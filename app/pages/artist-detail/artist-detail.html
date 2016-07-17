@@ -1,0 +1,55 @@
+<!--
+  Generated template for the ArtistDetailPage page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="artist">{{ artist.name }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding *ngIf="artist">
+  <div class="artist-hero" [ngStyle]="{'background-image': 'url(' + artist.image[3]['#text'] + ')'}"></div>
+    <!--<img src="{{ artist.image[3]['#text'] }}" alt="{{ artist.name }}">-->
+  <div>
+    <ion-row>
+      <ion-badge class="badge" secondary *ngIf="artist.ontour === '1'">On Tour</ion-badge>
+    </ion-row>
+
+    <ion-row>
+      <ion-col ion-item item-left>
+        <ion-icon name="people"></ion-icon>
+        {{ artist.stats.listeners }} Listeners
+      </ion-col>
+      <ion-col ion-item item-right>
+        <ion-icon name="stats"></ion-icon>
+        {{ artist.stats.playcount }} Plays
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <p [innerHtml]="artist.bio.summary"></p>
+
+  <h3>Similar Artists:</h3>
+  <ion-list>
+    <ion-item class="related" *ngFor="let related of artist.similar.artist" (click)="onGoToRelated(related)">
+      <ion-thumbnail item-left>
+        <img src="{{ related.image[1]['#text'] }}" alt="{{ related.name }}">
+      </ion-thumbnail>
+      {{ related.name }}
+    </ion-item>
+  </ion-list>
+
+  <h3>Tags:</h3>
+  <ion-item class="tags" item-left *ngFor="let tag of artist.tags.tag" (click)="onGoToArtistByTag(tag.name)">
+    <ion-badge>
+      {{ tag.name }}
+    </ion-badge>
+  </ion-item>
+
+</ion-content>

@@ -1,0 +1,40 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Most Played in {{ settings.country }}</ion-title>
+    <ion-buttons end>
+      <button primary (click)="goToSettingsPage()">
+        <ion-icon name="settings"></ion-icon>Settings
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let artist of artists">
+    <img src="{{ artist.image[3]['#text'] }}"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{ artist.name }}
+      </ion-card-title>
+    </ion-card-content>
+    <ion-row>
+      <ion-col ion-item>
+        <button clear large item-left>
+          <ion-icon name="headset"></ion-icon>
+          {{ artist.listeners }}
+        </button>
+      </ion-col>
+      <ion-col ion-item>
+        <button large item-right (click)="onArtistDetails(artist)">
+          <ion-icon name="add"></ion-icon>
+          More
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>

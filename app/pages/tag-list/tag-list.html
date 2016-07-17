@@ -1,0 +1,21 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ tag }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item *ngFor="let artist of artists" (click)="onArtistDetails(artist)">
+      <ion-thumbnail item-left>
+        <img src="{{ artist.image[3]['#text'] }}"/>
+      </ion-thumbnail>
+      {{ artist.name }}
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
